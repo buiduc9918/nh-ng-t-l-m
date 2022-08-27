@@ -1,0 +1,463 @@
+Bài 1:
+
+tại sao lại phải sử dụng hệ đếm nhị phân : đơn giản là giao tiếp giữa con người và máy tính :
+các kí hiệu được chuyển đổi qua bảng mã ALC II
+
+Bài 2 : so sánh hệ vi xử lí và hệ vi điều khiển :
+
+- Cả hai đều có đơn vị xủ lí trung tâm (CPU) thực thi các chương trình .
+- Bộ nhớ RAM chứa các dữ liệu thay đổi , còn ROM thì chứa các chương trình .
+- Tích hợp các bộ điều khiển giao tiếp với thế giới bên ngoài .
+- Hệ vi điều khiển nhúng bên trong các thiết bị để điều khiển hay kiểm soát các chức năng hay hoạt động của sản phẩm .
+- Hệ vi điều khiển chỉ để thực hiện 1 hoạt động , nhiệm vụ hay chương trình xác định . Các chương trình được lưu trong ROM .
+- Hệ vi điều khiển xử dụng nguồn điện thấp.
+- Bộ vi xử lí có thể sử dụng trọng bộ vi điều khiển , và có thể thay đổi chương trình hay hoạt động .
+
+Bài 3 : Phân loại VONNEUMAN - HARVARD
+
+- Kiến trúc vonneuman có bus bộ nhớ  dữ liệu và bus bộ nhớ chương trình. Có thể đọc 1 lệnh hoặc đọc ghi dữ liệu vào bộ nhớ nhưng phải thực hiện tuần tự.
+- kiến trúc harvard có các bus bộ nhớ dữ liệu và bus bộ nhớ chương trình riêng cho từng bộ nhớ , 
+và các bộ nhớ riêng biệt nên thực hiện nhiều chương trình nên tốc độ cao hơn, nhưng đánh đổi cấu trúc bộ nhớ phức tạp hơn .
+
+Bài 4 : phân biệt CISC và RISC :
+ 
+- các thiết bị xử lí RISC có định dạng cố định , nên việc xử dụng vi mã là không cần thiết . Và xử lí hết cái lệnh với 1 chu kì . 
+Các lệnh nạp và lưu truy cập vào bộ nhớ các lệnh logic số học thì thao tác trên thanh ghi .
+- các thiết bị xử lí RISC các lệnh có 1 chế độ định dạng nhất định và ít chế độ địa chỉ ,
+ có 1 thanh ghi dùng chung và vài lệnh đồng thời và thường xử dọng kĩ thuật đường ống .
+- Với các RISC thì các chương trình càng phức tạp càng nhiều lệnh và nhiều chu kì nạp .
+- Với các CISC  hầu hết các lệnh có thể truy cập bộ nhớ còn RISC thì chỉ có nạp và lưu .
+- CISC có tập lệnh phức tạp nên cần đơn vị điều khiển phức tạp và vi chương trình , CISC khó xử dụng kĩ thuật đường ống .
+- RISC có thể cải thiện hiệu năng đáng kể nhờ xung nhịp và và kĩ thuật ống lệnh .
+
+Bài 5 : kiến trúc load / store :
+
+ - kiến trúc load/store các lệnh logic thực hiện trực tiếp trên thanh ghi .
+ - còn các lệnh copy dữ liệu từ bộ nhớ (store) hay save lưu dự liệu từ thanh ghi load mới ảnh huỏng bộ nhớ .
+ - về CISC có thể thực hiện dữ liệu trực tiếp trên bộ nhớ .
+
+Bài 6 : các chế độ hoạt động con VXL ARM :
+ Cung cấp 7 chế độ :
+  -  Abort : Khi không kết nối với bộ nhớ .
+  -  Interrupt request IRQ  và fast interrupt request FIQ : 2 chế độ tương ứng 2 mức ngắt .
+  -  Supervisor : hệ thống khởi động Reset và hệ điều hành hoạt động .
+  -  System : khi có thể tác động vào thanh ghi CPSR .
+  -  Underfined : khi gặp 1 lệnh lỗi .
+  -  User : chạy và sử dụng các ứng dụng thông thường .
+
+Bài 7 : Thanh ghi và chế độ ?
+ các thao tác và thanh ghi :
+- VXL 37 thanh ghi , thanh ghi có 32 bít . Mối chế độ có các thanh ghi riêng . 
+- Có 15 thanh ghi đa dụng R 0->14 và 2  thanh ghi trạng thái : 
+các thanh ghi hoạt động hầu hết các chế độ nhưng ngoại lệ FIQ-R8->12 không hoạt động , 
+và R13-14-15 có các chức năng riêng lần lượt như con trỏ ngăn xếp stackpoint SP, 
+liên kết LR chứa địa chỉ quay lại chương trình khi hoang thành 1 hàm con ,
+ bộ đếm PC và chứa địa chỉ lệnh tiếp theo .
+- 2 thanh ghi trang thái chứa 31 thì với bít 28->31 là quan trọng nhất . 
+N Z C V : N  0-1 xác định âm hay không, 
+Z là có phải là số không hay không ,
+C tương ứng lệch 1 bít, 
+và V tương ứng lệch 2 bít lúc đó C = 0.
+
+
+Bài 8: 
+
+MOV R5,#-0x45551A11
+MOV R3,#0x341AAD11
+MOV R1,#0xFFA11111
+MOV R2,#0xFAA11111
+MOV R4,#0xFFF11111
+ADDS R1,R1,R2,R4; /*R1 = R1 + R2 + R4*/
+SUBS R4,R3;R4 = R4 - R3
+MUL  R5,#0  Nhân R5 vs 0 
+
+? Đưa ra kết quả của R4,R1,R5
+R4 = ?
+R1 = ?
+R5 = ?
+Z = ? N = ? C = ? V = ?
+? Thực hiện tìm các cờ N, Z, C, V Trong thanh ghi trạng thái CPSR 
+/*Tổng giá trị lưu trong 3 thanh ghi này*/
+R1,#0xFFA11111
+R2,#0xFAA11111
+R4,#0xFFF11111
+R1,  2.FA333333 -> Kết quả lưu trong R1 = FA333333
+-> Tràn > 1 Cờ V = 1 .C Z N = 0
+SUBS R4,R3;R4 = R4 - R3
+
+R4,#0xFFF11111
+R3,#0x341AAD11
+    0xCBD66400
+-> Kết quả cờ:Không có sự thay đổi j 
+V = 1, nzc = 0
+MUL  R5,#0  Nhân R5 vs 0 
+R5 = 0
+KQ Cuối :
+-> Z = 1, V = 1, N C = 0
+
+/**/
+
+Bài 9 :
+
+Cho chương trình sau:
+
+MOV R0, #0xFFF11A1A
+MOV R1,#0xF1AAA111
+MOV R2,#0xAFFADC12
+ADDS R1,R2,R0;
+SUBS R4,R1,R2;
+Kết quả thanh ghi R1,R4
+Các cờ trạng thaisN, Z, C,V của thanh ghi CPSR sau khi chạy chương trình này
+
+Xét ADDs R1,R2,R0; // R1 = R1 + R2 + R0
+    R1,#0xF1AAA111
+   +R2,#0xAFFADC12
+   +R0,#0xFFF11A1A
+--------------------
+    1.#0xA196973D thừa 1 bít (dư số 2)
+N=0,Z=0,C=1,V=0
+
+XÉT SUBS R4,R1,R2; /// R4 = R4-R1-R2
+
+    R4,#0x00000000
+   -R1,#0xF1AAA111
+   -R2,#0xAFFADC12
+----------------------
+    R4,#0x5E5A82DD (thiếu 1 bít (dư số 2) giá trị âm
+N=1;Z=0;C=1;V=0;
+
+kết quả NZCV : NC = 1, ZV = 0
+
+
+
+Bài 10 :
+ ngôn ngữ assemblely :
+R3 = 0x453AAF1D
+a,MOV R4,R3,LSL,#3 (trái 3 bít )
+B,MOV R5,R3,LSL,#5
+C,MOV R6,R3,LSL,#12
+C,MOV R7,R3,LSL,#1
+
+
+Bài làm :
+0x29D578E8
+0xA755E3A0
+0xAAF1D000
+0x8A755E3A
+
+Bài 11 lập trình 
+giả sử 
+MOV R1 , #a
+MOV R2 , #b
+MoV R3 , #c
+CMP      R1,R2
+MOVGT R4,R1
+MOVLT R4,R2
+CMP      R4,R3
+MOVLT  R4,R3
+
+
+
+Tinhs toong các số 0->100 lưu vào R0 
+MOV R0,#0;/*lưu tổng*/
+MOV R1,#0;/*Biến chạy*/
+LOOP
+        ADD R1,R1,#1;//R1 = R1+ 1
+        ADD R0,R1;
+        CMP R1,#99
+        BNE  LOOP
+    END
+
+
+Bài 12 :
+
+MOV R3,#0;/*lưu tổng*/
+MOV R4,#0;//công 142
+MOV R5,#0;//nhan r4 vs r1 chạy
+MOV R1,#0;/*Biến chạy*/
+LOOP
+        ADD R1,R1,#1;
+        ADD R4,R1,#142;
+        RSB R5,R4,R1;
+        ADD R3,R5;
+        MOV R4,#0;
+        MOV R5,#0;
+        CMP R1,#150
+        BNE  LOOP
+    END
+
+Giải :
+
+
+MOV R0,#0   //BIẾN LƯU GIÁ TRỊ
+MOV R1,#0   //BIẾN CHẠY
+MOV R2,#0   //BIẾN LƯU GIÁ TRỊ
+MOV R3,#0	//BIẾN LƯU GIÁ TRỊ
+
+LOOP	
+	ADD R1,R1,#1    	//R1=R1+1
+	ADD R2,R1,#142		//R2=R1+142
+	MAL R0,R1,R2,R3		//R0=R1*R2+R3
+	MOV R3,R0			//R3=R0
+	CMP R1,#151
+	BNE LOOP
+END
+
+   // S = 1*(1+142)+2*(2+142)+3*(3+142)+..+150*(150+142)
+
+Đếm số byte 0 trong 1024 byte ô nhớ bắt đầu tại địa chỉ 500H. Mỗi ô nhớ 2byte. 
+Số byte bằng 0 lưu ở địa chỉ 600H
+
+
+
+
+Bài 13 :
+
+///Đếm số byte 0 trong 1024 byte ô nhớ bắt đầu tại địa chỉ 500H. 
+Mỗi ô nhớ 2byte. 
+Số byte bằng 0 lưu ở Thanh ghi R1
+
+1024 byte Mỗi ô nhớ 2byte -> Số phần tử là 1024/2 = 512 pt
+Địa chỉ bắt đầu 500H-> Thanh ghi R0 
+MOV R0,#500H;Địa chỉ bắt đầu của của bộ nhớ 1024 byte 
+MOV R2,#511 ; Khai báo số lần lặp chương trình 
+MOV R1,#0   ; KQ 
+
+LOOP
+    LDR R3,[R0],#2; R3 = M[R0], Sau mỗi lần lặp R0 tăng 2 byte để trỏ tới 
+	              ; giá trị ô nhớ kế tiếp
+	CMP R3,#0     ; So sánh R3 với 0 
+	ADDEQ R1,#1   ; tăng số đếm lên 1
+	SUB   R2,#1   ; trừ R2 đi 1 đơn vị 
+	CMP   R2,#0
+	BNE   LOOP
+END
+
+
+
+Bài 13
+
+
+Cho 1 mảng ô nhớ gồm 2156 byte ô nhớ. Mỗi ô nhớ 4 byte. Bắt đầu tại địa chỉ 10H . Cho 1 mảng ô nhớ gồm 2156 byte ô nhớ. Mỗi ô nhớ 4 byte. Bắt đầu tại địa chỉ 10H
+Thực hiện đếm các byte chẵn lưu ở thanh ghi R0
+Thực hiện đếm các byte lẻ lưu ở thanh ghi R1
+Thực hiện đếm các byte bằng 0 lưu ở thanh ghi R2
+Thực hiện đếm các byte chẵn lưu ở thanh ghi R0
+Thực hiện đếm các byte lẻ lưu ở thanh ghi R1
+Thực hiện đếm các byte bằng 0 lưu ở thanh ghi R2
+
+
+2156  byte Mỗi ô nhớ 4 byte -> Số phần tử là 2156/4 = 539 pt
+Địa chỉ bắt đầu 10H-> Thanh ghi R0 
+MOV R0,#10H;Địa chỉ bắt đầu của của bộ nhớ 1024 byte 
+MOV R4,#539 ; Khai báo số lần lặp chương trình 
+MOV R1,#0   ; KQ 
+MOV R2,#0  ;
+
+CHAN
+    LDR R3,[R0],#4; R3 = M[R0], Sau mỗi lần lặp R0 tăng 4 byte để trỏ tới 
+	              ; giá trị ô nhớ kế tiếp
+	CMP R3,#0     ; So sánh R3 với 0 
+	ADDEQ R1,#1   ; tăng số đếm lên 1
+	SUB   R4,#1   ; trừ R4 đi 1 đơn vị 
+	CMP   R4,#0
+	BNE  CHAN
+
+LE
+    LDR R5,[R0],#4; R5 = M[R0], Sau mỗi lần lặp R0 tăng 4 byte để trỏ tới 
+	              ; giá trị ô nhớ kế tiếp
+	CMP R5,#0     ; So sánh R5 với 0 
+	ADDEQ R2,#1   ; tăng số đếm lên 1
+	SUB   R6,#1   ; trừ R4 đi 1 đơn vị 
+	CMP   R6,#0
+	BNE   LE
+
+END
+
+
+
+Bài 14:
+Tính tổng 1024 ô nhớ mỗi ô 2 byte bắt đầu tại địa chỉ 1000H
+Điều kiện là số chẵn
+
+Có ý tưởng ko??
+Dịch: Dịch ntn
+AND 1-> TÌm được bit cuối là 1 hay 0 
+-> Đem số cần kiểm tra đi AND với 1 -> KQ là 0 -> Số đem nhân là chẵn
+                                        1 -> Số đem nhân là lẻ
+4đ : <-> 	
+MOV R0,#0x0001; Lưu số 1 để đem nhân
+MOV R1,#1000H ; Địa chỉ bắt đầu của mảng
+MOV R2,#511   ; Số lượng phần tử 
+LOOP
+   LDR   R3,[R1],#2; R3 = M[R1] sau mỗi lần lặp R1 = R1 + 2 để trỏ tới ô nhớ
+                   ; Kếtieep
+   AND   R4,R0,R3  ; R4 = R0 & R3
+   CMP   R4,#0     ;
+   ADDEQ R5,R3     ; R5 += R3
+   SUB   R2,#1     ; giảm số lần lặp đi 1 đơn vị
+   CMP   R2,#0     ; 
+   BNE   LOOP 
+END
+
+
+
+Bài 14-1:
+Tính tổng 1095 ô nhớ mỗi ô 3 byte bắt đầu tại địa chỉ 1000H
+chỉ số đó lẻ và lớn hơn 31. lưu ở R6
+
+Có ý tưởng ko??
+Dịch: Dịch ntn
+AND 1-> TÌm được bit cuối là 1 hay 0 
+-> Đem số cần kiểm tra đi AND với 1 -> KQ là 0 -> Số đem nhân là chẵn
+                                        1 -> Số đem nhân là lẻ
+4đ : <-> 	
+1095 / 3 == 365
+MOV R0,#0x0001;
+MOV R1,#1000H ;
+MOV R2,#365  ;
+
+
+
+
+======= >>>>
+
+
+MOV R0,#1000H; Địa chỉ bắt đầu 
+MOV R1,#365  ;
+MOV R2,#0x000001; Số 1
+
+LOOP
+   LDR   R3,[R0],#3;
+   CMP   R3,#31;
+   BLGT  CHECK;
+   SUB   R1,#1;
+   CMP   R1,#0;
+   BNE   LOOP
+END
+CHECK
+    MOV R4,R3;
+	AND R5,R0,R2;
+	CMP R5, #1;
+	ADDEQ R6,R4;
+    MOV PC,LR;
+
+
+Bài 15 : /* sắp xếp mảng tăng dần 1024 phần tử Bắt đâu tại địa chỉ 1000*/
+EREA bai8,CODE,READONLY
+ENTRY
+     MOV R0,#0    ; tạo biến chạy i = 0-> 255 
+	 MOV R1,#0    ; tạo biến chạy j = i+1 -> 256
+	 MOV R2,#1000 ; địa chỉ ô nhớ đầu tiên của mảng 
+	 MOV R3,#1002 ; Địa chỉ ô nhớ đầu của mảng2
+   LOOP1
+     ADD R1,R0,#1 ; R1 = R0+ 1 ứng với j = i+1
+   LOOP2
+     LDR  R4,[R2] ; R4 = table[R2]
+	 LDR  R5,[R3] ; R5 = table[R3]
+	 CMP  R4,R5   ; so sánh R4,R5
+	 BLGT SWAP    ;nếu R4>R5 nhảu tới đổi chỗ 
+	 
+	 ADD R3,R3,#2 ; tăng địa chỉ ô nhớ để trỏ tới ô nhớ kế tiếp 
+	 ADD R1,R1,#1 ; tăng biến chạy lên 1 đơn vị 
+	 CMP R1,#511
+	 BNE LOOP2
+	ADD R2,R2,#2; tăng đại chỉ ô nhớ lên 2 trỏ tới ô nhớ tiếp theo 
+	ADD R0,R0,#1; tăng biến chạy i 
+	CMP R0,#512
+	BNE LOOP1
+SWAP MOV R4,[R3]
+     MOV R5,[R2]
+	 MOV PC,LR
+END
+
+Bài 16 :
+
+/*Chuỗi ...... Coppy chuỗi hello từ địa chỉ 0x456H đến địa chỉ 0x465H
+     
+/*Bắt đâì tại 0x456H */
+    MOV R0,#0x456H;
+	MOV R1,#0x465H;
+	BL coppystr
+	[R0] DCD,"hello",0 ; đưa hello vào xxx
+	[R1] SCB,"     ",0 ; tạo chuỗi rỗng 
+FunctionCoppy
+    LDR   R3,[R0],#1;  R3 = M[R1],R1 = R1 +1
+	STR   R3,[R1],#1;  load vào địa yyy
+	CMP  R3,#0;
+	BNE  coppystr;
+	MOV  PC,LR 
+END
+
+Bài 17 :
+Bài 2: Cho 1 mảng ô nhớ gồm 1024 byte dữ liệu. Bắt đầu tại địa chỉ 2000H. 
+a,Thực hiện liệt kê các byte dữ liệu là số chia hết cho 2 và 3 có trong mảng. Lưu vào 1 mảng bắt đầu tại địa chỉ 5200H
+/*Làm câu a*/
+
+MOV R0,#2000H; Địa chỉ bắt đầu 
+MOV R1,#5200H; 
+MOV R2,#0x000001;
+
+LOOP
+   LDR   R3,[R0],#3;
+   AND   R5,R0,R2;
+   CMP   R5,#1;
+   BLGT  CHECK;
+   BLGT  MP
+   BNE   LOOP
+END
+CHECK
+    MOV R2,R3;
+    MOV PC,LR;
+MP
+  CMP R4,#3;
+  SUB R4,R4,#3;
+  CMP R2;#0;
+  BNE MP
+  BEQ CP
+CP
+  MOV R1,R2;
+  BL LOOP;
+  
+
+                                                          Bài thi thử 
+
+
+BÀI TẬP LỚN
+
+
+Bài 1: Sử dụng 1 biến trở kết hợp 1 màn hình LCD thực hiện yêu cầu sau: 
+Thực hiện đo tần số , Sử dụng biến trở để thay đổi tần số . 
+Hiện thị tần số đo được lên màn hình LCD16x2. 
+Tần số đo được chỉ được nằm trong khoảng từ 1000 - 10000HZ.
+
+BÀI LÀM
+
+
+
+
+
+Bài 2: Cho 1 mảng gồm 1024 byte. Bắt đầu tại đia chỉ 2000H. 
+Mỗi ô có 4 byte, 
++ Đưa ra các byte dương vào 1 mảng . mảng đó bắt đầu từ địa chỉ 3000H
++ Đưa ra các byte âm vào 1 mảng, mảng đó bắt đầu tại địa chỉ 5000H
+
+Xắp xếp mảng dương theo yêu cầu tăng dần .
+Xắp xếp mảng âm theo yêu cầu giảm dần .
+Đối với cả 2 mảng đã sắp xếp: đưa ra số nhỏ thứ 2 và lớn thứ 2 lưu ở địa chỉ 500H và 504H.
+
+
+BÀI LÀM 
+
+
+
+
+
+
+
+
+
+
+
+
+

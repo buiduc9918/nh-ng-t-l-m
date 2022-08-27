@@ -1,0 +1,28 @@
+câu 1
+3 loại bus :
+bus data :  truyền tải dữ liệu 2 chiều
+bus conctrol : điều khiển hoạt động bộ vi xử lí .
+câu 4
+CÂU HỎI 3.8: Viết chương trình hợp ngữ cho vi điều khiển 8051 tính tổng của 2 số 16 bit. 
+Biết các số này được đặt trong bộ nhớ RAM trong. 
+Cụ thể, số thứ nhất được đặt tại 2 ô nhớ có địa chỉ 30H, 31H (30H chứa byte thấp, 31H chứa byte cao).
+Số thứ hai được đặt tại 2 ô nhớ có địa chỉ 32H, 33H. Kết quả tìm được tổng để trong bộ nhớ RAM trong tại 3 byte: 34H, 35H, 36H.
+ 
+	 ORG 00H
+		MOV R3, #0 		; nap R3 = 0
+		MOV R0, #30H 	; nap gia tri R0 = 30H
+		MOV A, @R0 	; nap noi dung cua R0 tro den vao thanh ghi A
+		MOV R1, #32H 	; nap gia tri R1 = 32H
+		ADDC A, @R1 	; cong them noi dung cua R1 vao A
+		MOV 34H, A 	; luu noi dung A vao o nho dia chi 34H (byte thap)
+		MOV R0, #31H 	; nap gia tri R0 = 31H
+		MOV A, @R0 	; luu noi dung cua R0 tro den vao thanh ghi A
+		MOV R1, #33H 	; nap gia tri R1 = 33H
+		ADDC A, @R1 	; cong them noi dung cua R1 vao A, xet co CY
+		JNC NEXT 		; nhay den next neu CY = 0
+		INC R3 		; tang R3
+		MOV 36H, R3 	; nap R3 = 01H vao o nho co dia chi 36H
+NEXT:	
+		MOV 35H, A 	; luu noi dung cua A vao o nho co dia chi 35H
+		MOV 36H, #0 	; CY = 0, o nho co dia chi 36H = 00H
+		END

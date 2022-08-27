@@ -1,0 +1,66 @@
+AREA  BAI4, CODE READONLY
+
+Entry
+
+MOV R0, 2000H ;
+MOV R1, #256 ;
+MOV R2, #0  //ĐẾM SỐ byte ÂM
+MOV R3, #0	//ĐẾM SỐ byte BẰNG 0
+MOV R4, #0	//ĐẾM SO byte DƯƠNG
+MOV R5, 1000H
+
+LOOP
+	LDR R2, [R0], #1   
+	CMP R2, #0
+	ADDLT A, #1
+	ADDEQ B, #1
+	ADDGT C, #1
+	STR A, [R5,#4]
+	STR B, [R5,#4]
+	STR C, [R5,#8]
+	SUB R1, #1
+	CMP R1, #0
+	BNE LOOP
+END
+làm lại ; LƯU KẾT CAC GIÁ TRỊ VÀO CÁC VỊ TRÍ NHẤT ĐỊNH BẮT DẦU TƯ 2000H đến 1000H
+          sô amduong khong lưu vào địa chỉ 01H 
+          
+
+            AREA bai4, CODE , READONLY    ;
+               Entry                      ; //khởi tạo
+Main         MOV    A       ,#0  ;  //SOAM
+             MOV    B       ,#0  ;  //SODUONG
+             MOV    C       ,#0  ;  //SOKHONG
+             MOV    L       ,#01H;
+             MOV    R0      ,#2000H ;
+             MOV    R1      ,#256    ;
+             MOV    R2      ,#1000H  ;
+SOSANH       LDR   R6  ,[R0],#4    ;
+             LDR   R5  ,[R2],#12   ;
+             CMP   R6 ,#0          ;
+             BLE   DAYAM           ;
+             BNE   DAYDUONG        ;
+             BEQ   DAYKHONG        ;
+             SUB   R1,#1           ;
+KET          CMP   R1,#0           ;
+             BNE   SOSANH          ;
+             BEQ   LUU             ;
+DAYAM        ADD   A ,#1           ;
+             STR   R5,[R6]         ;
+             JNP   KET             ;
+DAYDUONG     ADD   B    ,#1        ;
+             STR   R5,[R6,#4]      ;
+             JNP   KET             ;
+DAYKHONG     ADD   C  ,#1          ;
+             STR   R5 ,[R6,#8]     ;
+             JNP   KET             ;
+LUU          STR   R5,[R2]         ;
+             STR   A,[L]           ;
+             STR   B,[L,#4]        ;
+             STR   C,[L,#8]        ;
+             MOV   LR,PC           ;
+             JNP   MAIN            ;
+END.
+
+ 
+                
